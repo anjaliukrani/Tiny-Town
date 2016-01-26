@@ -391,7 +391,7 @@
             this.recieptLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recieptLabel.Location = new System.Drawing.Point(3, 42);
             this.recieptLabel.Name = "recieptLabel";
-            this.recieptLabel.Size = new System.Drawing.Size(484, 460);
+            this.recieptLabel.Size = new System.Drawing.Size(484, 469);
             this.recieptLabel.TabIndex = 39;
             this.recieptLabel.Visible = false;
             // 
@@ -482,7 +482,7 @@
             this.DoubleBuffered = true;
             this.Name = "petShop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tiny Town";
+            this.Text = "Tiny Paws ";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.petshop_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.carrotPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dogFoodPic)).EndInit();

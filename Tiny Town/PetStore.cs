@@ -1,5 +1,5 @@
-﻿///made by Maya Stuart
-///January 22
+﻿///Made by Maya Stuart
+///January 26
 /// Tiny Town Pet Store
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Tiny_Town
 {
@@ -96,6 +97,7 @@ namespace Tiny_Town
             subtotal = (basket[0] * prices[0] + basket[1] * prices[1] + basket[2] * prices[2] + basket[3] * prices[3] + basket[4] * prices[4] + basket[5] * prices[5] + basket[6] * prices[6] + basket[7] * prices[7] + basket[8] * prices[8]) * (1 + HST);
             totalsLabel.Text = "Total: " + subtotal.ToString("C");
 
+            //calculate tax amount and total cost amount
             taxAmount = subtotal * HST;
             totalCost = subtotal;
         }
@@ -162,7 +164,7 @@ namespace Tiny_Town
             recieptButton.Visible = true;
             inputMoneyLabel.Visible = true;
         }
-        //displays recipt when reciept button is clicked
+        //when reciept button is clicked, decide whether the amount is sufficient and proceed with corresponding action
         private void recieptButton_Click(object sender, EventArgs e)
         {
 
@@ -177,21 +179,25 @@ namespace Tiny_Town
 
             if (Form1.wallet < Convert.ToDecimal(amountGiven))
             {
-                //not enough money in wallet
+                //if not enough money in wallet, show message
                 MessageBox.Show("You do not have enough money for this purchase in your wallet");
             }
 
             //print reciept 
             if (amountGiven > totalCost && Convert.ToDecimal(amountGiven) < Form1.wallet)
             {
+                // Reciept sound effect
+                SoundPlayer reciept = new SoundPlayer(Properties.Resources.Cash_Register_printing_sound);
+                reciept.Play();
 
+                //make labels on main screen invisble
                 recieptLabel.Visible = true;
                 shopAgainButton.Visible = true;
                 inputMoneyLabel.Visible = false;
                 amountGivenInput.Visible = false;
                 recieptButton.Visible = false;
-            
 
+                //create label on reciept
                 recieptLabel.Text += "Tiny Paws Pet Shop";
 
                 if (basket[0] > 0)
@@ -257,6 +263,7 @@ namespace Tiny_Town
 
         private void shopAgainButton_Click(object sender, EventArgs e)
         {
+            //reset screen, variables, and labels
             recieptLabel.Visible = false;
             shopAgainButton.Visible = false;
 
@@ -266,7 +273,6 @@ namespace Tiny_Town
             totalsLabel.Text = "";
             recieptLabel.Text = "";
             amountGivenInput.Text = "";
-           
 
             subtotal = 0;
             taxAmount = 0;
@@ -284,6 +290,7 @@ namespace Tiny_Town
             petBrushNumeric.Value = 0;
             petBedNumeric.Value = 0;
 
+            //reset price array
             for (int i = 0; i < basket.Length; i++)
             {
                 basket[i] = 0;
@@ -292,11 +299,14 @@ namespace Tiny_Town
 
         private void exitStoreButton_Click(object sender, EventArgs e)
         {
+            //close store when exit store button is clicked
             this.Close();
 
         }
+
         private void petshop_Paint(object sender, PaintEventArgs e)
         {
+            //display wallet amount 
             e.Graphics.DrawString("Wallet:$" + Form1.wallet, new Font("Courier New", 12), new SolidBrush(Color.Red), 50, 10);
         }
     }

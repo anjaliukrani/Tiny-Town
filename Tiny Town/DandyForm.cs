@@ -150,7 +150,7 @@ namespace Tiny_Town
 
         private void jellyBeanUpCown_ValueChanged(object sender, EventArgs e)
         {
-            ////Jelly Beans
+            //Jelly Beans
             items[6] = Convert.ToInt16(jellyBeanUpDown.Value);
             itemsUpdate();
         }
@@ -286,6 +286,7 @@ namespace Tiny_Town
         }
         private void DandyForm_Paint(object sender, PaintEventArgs e)
         {
+            //Showing wallet on dandy form screen
             e.Graphics.DrawString("Wallet:$" + Form1.wallet, new Font("Courier New", 12), new SolidBrush(Color.Red), 540, 10);
         }
     }

@@ -19,7 +19,7 @@ namespace Tiny_Town
         
         //strating points
         int drawX = 50;
-        int drawY = 300;
+        int drawY = 250;
 
         //candy door points
         int drawX2 = 120;
@@ -32,7 +32,8 @@ namespace Tiny_Town
         //pet store 
         int DrawX4 = 540;
         int DrawY4 = 255;
-        
+
+       
         //determines whether a key is being pressed or not
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown;
 
@@ -95,9 +96,10 @@ namespace Tiny_Town
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            
+            //make visabilites true, and false, and change background when start button is pressed
             this.BackgroundImage = Properties.Resources.townImage;
             startButton.Visible = false;
+            exitStoreLable.Visible = true;
         }
 
         private void Form1_Activated(object sender, EventArgs e)
@@ -173,10 +175,15 @@ namespace Tiny_Town
                 petShop ps = new petShop();
                 ps.Show();
             }
+            if (drawX > this.Width - 20)
+            {
+                //exit game
+                this.Close();
+            }
 
 
-            //refresh the screen, which causes the Form1_Paint method to run
-            Refresh();
+                //refresh the screen, which causes the Form1_Paint method to run
+                Refresh();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -185,7 +192,7 @@ namespace Tiny_Town
             //draw rectangle to screen
             if (startButton.Visible == false)
             {
-                e.Graphics.DrawImage(Properties.Resources.girl, drawX, drawY, )
+                e.Graphics.DrawImage(Properties.Resources.girl, drawX, drawY, 20, 50);
                 e.Graphics.DrawString("Wallet:$" + wallet, new Font("Courier New", 12), new SolidBrush(Color.Red), 490, 10);
             }
 
